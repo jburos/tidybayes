@@ -448,7 +448,7 @@ spread_draws_long_ = function(draws, variable_names, dimension_names, regex = FA
       # 2. ADD CHAIN INFO
       nested_draws[[".chain_info"]] = list(draws[,c(".chain", ".iteration", ".draw")])
       # 3. UNNEST
-      long_draws = unnest_legacy(nested_draws)
+      long_draws = unnest(nested_draws, cols = c(-one_of(temp_dimension_names)))
     }
 
     #drop the columns that correspond to blank dimensions in the original spec
